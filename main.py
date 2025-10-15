@@ -47,16 +47,16 @@ def cadastrar_aluno() -> None:
     """Cadastra um novo aluno, validando formato e duplicidade."""
     matricula = input("Digite a matrícula (AAAA###): ").strip()
     if not validar_matricula(matricula):
-        print("❌ Matrícula inválida! Deve ter 7 dígitos, ex: 2025001.")
+        print("Matrícula inválida! Deve ter 7 dígitos, ex: 2025001.")
         return
 
     if matricula in alunos:
-        print("❌ Matrícula já cadastrada!")
+        print("Matrícula já cadastrada!")
         return
 
     nome = input("Digite o nome do aluno: ").strip()
     alunos[matricula] = {"nome": nome}
-    print(f"✅ Aluno {nome} cadastrado com sucesso!")
+    print(f"Aluno {nome} cadastrado com sucesso!")
 
 
 def listar_alunos() -> None:
@@ -76,7 +76,7 @@ def buscar_aluno() -> None:
     if aluno:
         print(f"Aluno encontrado: {aluno['nome']}")
     else:
-        print("❌ Aluno não encontrado.")
+        print("Aluno não encontrado.")
 
 
 def menu_alunos() -> None:
@@ -127,7 +127,7 @@ def menu_principal() -> None:
         elif opcao == "4":
             menu_relatorios()
         elif opcao == "5":
-            print("Encerrando o sistema... 👋")
+            print("Encerrando o sistema...")
             break
         else:
             print("Opção inválida.")
