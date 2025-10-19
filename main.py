@@ -105,17 +105,22 @@ def menu_alunos() -> None:
 # ==================== Gestão de Disciplinas ====================
 
 def menu_disciplinas() -> None:
-    gestao_diciplinas_ops()
-    escolha = input(">>> ")
-    match escolha:
-        case '1':
-            cadastrar_disciplina()
-        case '2':
-            listar_diciplinas()
-        case '3':
-            print("Digite o código da disciplina desejada:")
-            codigo = input(">> ")
-            buscar_disciplina(codigo)
+    while True:
+        gestao_diciplinas_ops()
+        escolha = input(">>> ")
+        match escolha:
+            case '1':
+                cadastrar_disciplina()
+            case '2':
+                listar_diciplinas()
+            case '3':
+                print("Digite o código da disciplina desejada:")
+                codigo = input(">> ")
+                buscar_disciplina(codigo)
+            case '4':
+                break
+            case '_':
+                print("Opção inválida")
 
 def gestao_diciplinas_ops() -> None:
     print("==-== Gestão de Diciplinas ==-==")
@@ -194,6 +199,35 @@ def buscar_disciplina(codigo) -> None:
         print(f"Vagas: {disciplina['vagas']}\n")
         return
     print("Este código não está registrado")
+
+# ==================== Gestão de Relatórios ====================
+
+#talvez precise mudar porque não sei como a maria colocou as matriculas
+
+def gestao_relatorios_ops() -> None:
+    print("""==-== Gestão de Relatórios ==-==\n
+    [1] Listar Alunos por Disciplina\n
+    [2] Listar Disciplinas por Aluno\n
+    [3] Listar Disciplinas com Vagas Esgotadas\n
+    [4] Voltar ao Menu Principal
+    """)
+
+def listar_alunos_diciplina(codigo):
+    if codigo in disciplinas.keys():
+        disciplina = disciplinas[codigo]
+        alunos_disciplina = ""
+        for matricula in matriculas:
+            if matricula["codigo_disciplina"] == codigo:
+                aluno = alunos[matricula["aluno"]]
+                alunos_disciplina += f"{aluno["nome"]}, "
+        if alunos_disciplina == "":
+            print("Não tem alunos matriculados nesta disciplina.")
+        else:
+            print(f"Os alunos matriculados nessa disciplina são: {alunos_disciplina}")
+        return
+    print("Este código não está registrado")
+
+
 
 # ==================== Menu Principal ====================
 
